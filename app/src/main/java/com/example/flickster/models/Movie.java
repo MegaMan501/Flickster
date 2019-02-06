@@ -3,6 +3,7 @@ package com.example.flickster.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,13 +11,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Parcel
 public class Movie {
 
+    int movieId;
     String posterPath;
     String title;
     String overview;
     String backdropPath;
     String releaseDate;
+    float voteAverage;
+
+    // empty constructor needed by the Parceler library
+    public Movie() {}
 
     public Movie(JSONObject jsonObject) throws JSONException {
 
@@ -25,6 +32,8 @@ public class Movie {
         overview = jsonObject.getString("overview");
         backdropPath = jsonObject.getString("backdrop_path");
         releaseDate = jsonObject.getString("release_date");
+        voteAverage = (float) jsonObject.getDouble("vote_average");
+        movieId = jsonObject.getInt("id");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
@@ -43,16 +52,21 @@ public class Movie {
     public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
     }
-    public String getTitle() throws ParseException {
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(releaseDate);
-        String fDate = new SimpleDateFormat("yyyy").format(date);
-        return title + " (" + fDate + ")";
+    public String getTitle() {
+//        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(releaseDate);
+//        String fDate = new SimpleDateFormat("yyyy").format(date);
+//        return title + " (" + fDate + ")";
+        return title;
+    }
+
+    public Float getVoteAverage() {
+        return voteAverage;
     }
 
     public String getOverview() {
         return overview;
     }
 
-
+    public int getMovieId() { return movieId; }
 }
 

@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/netflix_rasin_black</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:background">@color/netflix_rasin_black</item>
+        <item name="colorAccent">@color/starGold</item>
+        <item name="android:windowBackground">@color/netflix_rasin_black</item>
         <item name="android:textColor">@color/netflix_white</item>
     </style>
 
